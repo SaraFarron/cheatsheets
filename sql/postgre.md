@@ -23,3 +23,6 @@
 | \a |	Switch from aligned to non-aligned column output	
 | \H |	Switch the output to HTML format	
 | \q |	Exit psql shell
+
+
+#### By default postgres makes all strings lowercase, to prevent this, use double quotes
