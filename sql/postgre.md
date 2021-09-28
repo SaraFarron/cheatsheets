@@ -25,4 +25,4 @@
 | \q |	Exit psql shell
 
 
-#### By default postgres makes all strings lowercase, to prevent this, use double quotes
+#### By default, postgres makes all strings lowercase, to prevent this, use double quotes
