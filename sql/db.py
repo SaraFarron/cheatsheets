@@ -13,7 +13,7 @@ def execute_sql(command: str):
                 cur.execute(command)
                 try:
                     response = cur.fetchall()
-                except DatabaseError:
+                except DatabaseError:  # In case it does't return anything
                     return ''
 
     except DatabaseError as error:
