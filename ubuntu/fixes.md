@@ -27,3 +27,9 @@
     pavucontrol
 
 Поставить всему кроме наушников off
+
+### Поменять префикс в tmux
+
+    tmux set-option -g prefix M-b
+
+Этот меняет на Alt + b
