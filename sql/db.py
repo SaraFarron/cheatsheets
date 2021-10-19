@@ -24,7 +24,7 @@ def execute_sql(command: str):
     return response
 
 
-def create_table(table_name: str, fields: dict[str: Union[str, int, float, bool, dict]]):
+def create_table(table_name: str, fields: dict[str: Union[str, int, float, bool, dict]], create_id=True):
     """Create new table"""
 
     if is_table(table_name):
@@ -34,9 +34,27 @@ def create_table(table_name: str, fields: dict[str: Union[str, int, float, bool,
     CREATE TABLE "{table_name}" (
         """
 
+    if create_id:
+        command += 'id SERIAL PRIMARY KEY, '
+
     for name, variable_type in fields.items():
         command += f'{name} {variable_type}, '
     command = command[:-2] + ');'
+
+    execute_sql(command)
+
+
+def delete_table(table_name, include_if_exists=True):
+    """Delete table from database"""
+
+    if include_if_exists:
+        command = f"""
+                DROP TABLE IF EXISTS "{table_name}"
+                ;"""
+    else:
+        command = f"""
+                DROP TABLE IF EXISTS "{table_name}"
+                ;"""
 
     execute_sql(command)
 
