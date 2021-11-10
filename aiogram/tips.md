@@ -7,20 +7,23 @@
 
 put data:
 
-    # Method 1 (recommended if data["some_digit"] += 1 is needed
-    async with state.proxy() as data:
-        data['answer1'] = answer
+```py
+# Method 1 (recommended if data["some_digit"] += 1 is needed
+async with state.proxy() as data:
+    data['answer1'] = answer
 
-    # Method 2
-    await state.update_data(answer1=answer)
+# Method 2
+await state.update_data(answer1=answer)
 
-    # Method 3
-    await state.update_data(
-        {"answer1": answer}
-    )
+# Method 3
+await state.update_data(
+    {"answer1": answer}
+)
+```
 
 get data:
 
-    data = await state.get_data()
-    answer1 = data.get("answer1")
-
+```py
+data = await state.get_data()
+answer1 = data.get("answer1")
+```

@@ -1,8 +1,9 @@
 ## Current default docker-compose for projects
 
-    version: "3.7"
+```yaml
+version: "3.7"
 
-    services:
+services:
     web:
         build: .
         command: sh -c 'python manage.py collectstatic --no-input &&
@@ -25,71 +26,82 @@
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=postgres
         - POSTGRES_DB=postgres
-    volumes:
+volumes:
+    postgres_data:
+```
 
 ### If need celery then add this service
 
-    redis:
-        image: redis
-        ports:
-        - "6379:6379"
+```yaml
+redis:
+    image: redis
+    ports:
+    - "6379:6379"
+```
 
 ## Current default Dockerfile
 
-    FROM python:3.9.0
+```Dockerfile
+FROM python:3.9.0
 
-    WORKDIR /usr/src/server
+WORKDIR /usr/src/server
 
-    ENV PYTHONDONTWRITEBYTECODE 1
-    ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-    RUN pip install --upgrade pip
-    COPY requirements.txt .
-    RUN pip install -r requirements.txt
+RUN pip install --upgrade pip
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-    COPY . .
+COPY . .
+```
 
 ## docker-compose for python script
 
-    version: "3.7"
+```yaml
+version: "3.7"
 
-    services:
+services:
     main:
         build: .
         volumes:
         - .:/usr/src/app
         env_file:
         - .env
+```
 
 ## Dockerfile for python script
 
-    FROM python:3.9.0
+```Dockerfile
+FROM python:3.9.0
 
-    RUN pip install --upgrade pip
+RUN pip install --upgrade pip
 
-    COPY . ./
-    RUN pip install -r requirements.txt
+COPY . ./
+RUN pip install -r requirements.txt
 
-    ENTRYPOINT ["python", "bot.py"]
-
+ENTRYPOINT ["python", "bot.py"]
+```
 
 ## Magical image that will find and install everything from requirements.txt.
 
-## Dockerfile
+```Dockerfile
+FROM python:3-onbuild
 
-    FROM python:3-onbuild
-
-    COPY . .
-    CMD ["python", "main.py"]
+COPY . .
+CMD ["python", "main.py"]
+```
 
 ## Minimalistic docker-compose for small web apps, flask for example, works w dockerfile above
 
-    version "3"
+```yaml
+version "3"
 
-    services:
-        app:
-            build: .
-            volumes:
-                -.: /usr/src/app
-            ports:
-                - 5001:80
+services:
+    app:
+        build: .
+        volumes:
+            -.: /usr/src/app
+        ports:
+            - 5001:80
+```

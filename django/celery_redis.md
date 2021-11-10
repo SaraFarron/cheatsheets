@@ -5,7 +5,8 @@ Django и Celery
 Подключаем к учебному проекту Celery. Очень простой вариант - как это сделать.
 
 1. Создаем новый файл *core/celery.py*:
-```python
+
+```py
 import os
 from celery import Celery
 from django.conf import settings
@@ -18,18 +19,20 @@ celery_app.autodiscover_tasks(settings.INSTALLED_APPS)
 ```
 
 2. *core/settings.py*, добавим блок настроек для Celery:
-```python
+
+```py
 BROKER_URL = 'redis://guest:password@192.168.102.2:6379/0'
 CELERY_RESULT_BACKEND = 'redis://guest:password@192.168.102.2:6379/0'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 ```
-</pre>
+
 
 3. Создаем новый файл *user/tasks.py*, который содержит задачи для приложения user (например, отправку
 почтовых сообщений при регистрации нового пользователя):
-```python
+
+```py
 from celery import shared_task
 import datetime
 
@@ -46,7 +49,8 @@ def send_email_registration():
 Пустой файл следует создать заранее и настроить права доступа к нему.
 
 4. В файле *user/views.py*, добавляем строки:
-```python
+
+```py
 from user.tasks import send_email_registration
 
 '''
@@ -67,9 +71,10 @@ celery worker -A core.celery
 </pre>
 
 7. Запускаем проект:
-<pre>
-python3 manage.py runserver
-</pre>
+
+
+    python3 manage.py runserver
+
 8. Далее, создаем нового пользователя в веб-интерфейсе и проверяем содержимое файла report.txt,
 если все сработало как надо, там появится новая запись с датой и временем.
 
@@ -80,7 +85,6 @@ python3 manage.py runserver
 при запуске воркера celery.
 
 Решается переустановкой модуля redis и изменением его версии, слишком новая версия выдает ошибку.
-<pre>
-pip install redis==2.10.6
-</pre>
 
+
+    pip install redis==2.10.6

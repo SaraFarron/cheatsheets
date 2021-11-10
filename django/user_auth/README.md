@@ -4,80 +4,88 @@
 
 ### HTML files
 
-login.html
+#### login.html
 
-    {% extends 'base.html' %}
+```html
+{% extends 'base.html' %}
 
-    {% block content %}
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {% for field in form %}
-        <p>
-            {{ field.label_tag }}<br>
-            {{ field }}
-            {% if field.help_text %}
-            <small style="color: grey">{{ field.help_text }}</small>
-            {% endif %}
-            {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-            {% endfor %}
-        </p>
+{% block content %}
+<h2>Login</h2>
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+        <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
         {% endfor %}
-        <button type="submit">Login</button>
-    </form>
-    {% endblock %}
+    </p>
+    {% endfor %}
+    <button type="submit">Login</button>
+</form>
+{% endblock %}
+```
 
-register.html
+#### register.html
+```html
+{% extends 'base.html' %}
 
-    {% extends 'base.html' %}
-
-    {% block content %}
-    <h2>Sign up</h2>
-    <form method="post">
-        {% csrf_token %}
-        {% for field in form %}
-        <p>
-            {{ field.label_tag }}<br>
-            {{ field }}
-            {% if field.help_text %}
-            <small style="color: grey">{{ field.help_text }}</small>
-            {% endif %}
-            {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-            {% endfor %}
-        </p>
+{% block content %}
+<h2>Sign up</h2>
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+        <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
         {% endfor %}
-        <button type="submit">Sign up</button>
-    </form>
-    {% endblock %}
+    </p>
+    {% endfor %}
+    <button type="submit">Sign up</button>
+</form>
+{% endblock %}
+```
 
-profile.html
+#### profile.html
 
-    {% extends 'base.html' %}
+```html
+{% extends 'base.html' %}
 
-    {% block content %}
-    <h2>Profile</h2>
-    Hello, {{ user }}
-    {% endblock %}
+{% block content %}
+<h2>Profile</h2>
+Hello, {{ user }}
+{% endblock %}
+```
 
-base.html
+#### base.html
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>user_auth</title>
-    </head>
-    <body>
+```html
+<!DOCTYPE html>
 
-    <!-- Page Content -->
-    <div>
-    {% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user_auth</title>
+</head>
+<body>
 
-    {% endblock %}
-    </div>
-    <!-- /.container -->
+<!-- Page Content -->
+<div>
+{% block content %}
 
-    </body>
+{% endblock %}
+</div>
+<!-- /.container -->
+
+</body>
 </html>
+```
