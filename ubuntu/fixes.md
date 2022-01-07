@@ -33,3 +33,8 @@
     tmux set-option -g prefix M-b
 
 Этот меняет на Alt + b
+
+
+### Убрать read only
+
+    sudo chown -R $(whoami) my-project-folder
