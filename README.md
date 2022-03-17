@@ -8,4 +8,3 @@
 * nginx
 * docker with nginx
 * update docker configs to latest version
-* linux terminal tips
