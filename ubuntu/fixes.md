@@ -38,3 +38,6 @@
 ### Убрать read only
 
     sudo chown -R $(whoami) my-project-folder
+### Добавить папку в PATH
+
+    export PATH=$PATH:/place/with/the/file
