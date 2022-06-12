@@ -9,3 +9,7 @@
 `prefetch_related()` with ManyToMany or ForeignKey
 
 [more] on this 2 functions(https://django.fun/tutorials/select_related-i-prefetch_related-v-django/)
+
+### Open db console
+
+`python manage.py dbshell`
