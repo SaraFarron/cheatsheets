@@ -12,7 +12,13 @@
 |ctrl + p|открыть ~~врата в рай~~ командную строку|
 |ctrl + l|выделить всю строку|
 |ctrl + `|открыть/закрыть терминал|
-|alt + f13|доделать весь проект за меня|
+|alt + f13|улучшить качество кода|
+|Ctrl+Shift+[|collapse region  editor.fold|
+|Ctrl+Shift+]|uncollapse region  editor.unfold|
+|Ctrl+K Ctrl+[|collapse all subregions  editor.foldRecursively|
+|Ctrl+K Ctrl+]|uncollapse all subregions  editor.unfoldRecursively|
+|Ctrl+K Ctrl+0|collapse all regions editor.foldAll|
+|Ctrl+K Ctrl+J|uncollapse all regions|
 
 |ввод в командную строку|результат|
 |------|--------|
